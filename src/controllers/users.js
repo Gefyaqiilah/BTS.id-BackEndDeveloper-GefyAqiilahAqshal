@@ -15,10 +15,10 @@ const usersController = {
         delete data.encrypted_password
         
         try {
-          const cek = await userModels.signUp(data)
-          res.json(cek)
+          await userModels.signUp(data)
+          res.status(200).json({message: 'user has been created'})
         } catch (error) {
-          res.json(error)
+          res.status(500).json(error)
         }
       })
     })
@@ -35,7 +35,7 @@ const usersController = {
       }
       const match = await bcrypt.compare(password, dataUser[0].password)
       if (!match) {
-        res.json({message: 'email or password invalid'})
+        res.status(404).json({message: 'email or password invalid'})
       }
       const token = await jwt.sign({username: dataUser[0].username, email: email }, process.env.ACCESS_TOKEN_KEY, { expiresIn: '7d' })
       res.json({
@@ -44,15 +44,15 @@ const usersController = {
         username: dataUser[0].username
       })
     } catch (error) {
-      res.json(error)
+      res.status(500).json(error)
     }
   },
   getAllUser: async (req, res, next) => {
     try {
       const usersData = await userModels.getAllUser()
-      res.json(usersData)
+      res.status(200).json(usersData)
     } catch (error) {
-      res.json(error)
+      res.status(500).json(error)
     }
   }
 }
