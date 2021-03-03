@@ -19,9 +19,4 @@ app.use('*', (req, res, next) => {
   res.json({message: 'wrong endpoint'})
 })
 
-// error handling
-app.use((err, req, res, next) => {
-  res.send('something error')
-})
-
 app.listen(PORT, () => console.log('server running on port: ', PORT))
