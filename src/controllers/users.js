@@ -30,6 +30,9 @@ const usersController = {
     }
     try {
       const dataUser = await usersModel.getUserPassword(email)
+      if (dataUser.length === 0 ) {
+        return res.status(404).json({message: 'invalid email'})
+      }
       const match = await bcrypt.compare(password, dataUser[0].password)
       if (!match) {
         res.json({message: 'email or password invalid'})

@@ -4,7 +4,7 @@ const shoppingControllers = {
   newShopping: async (req, res, next) => {
     const {shopping: {createddate, name}} = req.body
     if (!createddate || !name) {
-      return res.status(400).json({message: 'cannot empty'})
+      return res.status(400).json({message: 'all field cannot empty'})
     }
     const payload = {
       CreatedDate: createddate,
@@ -37,6 +37,9 @@ const shoppingControllers = {
   },
   deleteShopping: async (req, res, next) => {
     const id = req.params.id
+    if (!id) {
+      return res.status(400).json({message: 'id cannot be empty'})
+    }
     try {
       await shoppingModel.deleteShopping(id)
       res.status(200).json({message: 'data has been deleted'})
