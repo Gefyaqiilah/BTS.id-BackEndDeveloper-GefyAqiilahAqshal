@@ -1,5 +1,8 @@
 # BTS.id-BackEndDeveloper-GefyAqiilahAqshal
-
+### Install All Depedencies
+```
+$ npm install
+```
 ### Start Development Server
 ```
 $ npm run dev
