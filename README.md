@@ -1,7 +1,11 @@
 # BTS.id-BackEndDeveloper-GefyAqiilahAqshal
 
-run :
-npm run start
+### Start Development Server
+```
+$ npm run dev
+```
 
-dev: 
-npm run dev
+### Start Production Server
+```
+$ npm run start
+```
